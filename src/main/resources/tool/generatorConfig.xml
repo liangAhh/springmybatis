@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+		<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+			<property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+			<!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+			<property name="caseSensitive" value="true"/>
+		</plugin>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" 
+						connectionURL="jdbc:mysql://192.168.1.101:3306/zthy" 
+						userId="root" 
+						password="1qaz2WSX">
+		</jdbcConnection>
+		<javaModelGenerator targetPackage="com.zthy.ssm.base.model" targetProject="F:\Program Files\workspace\maven\springmvcmybatis-base\src\main\java" />
+		<sqlMapGenerator targetPackage="com.zthy.ssm.base.mapping" targetProject="F:\Program Files\workspace\maven\springmvcmybatis-base\src\main\java"/>
+		<javaClientGenerator targetPackage="com.zthy.ssm.base.mapper" type="XMLMAPPER" targetProject="F:\Program Files\workspace\maven\springmvcmybatis-base\src\main\java"/>
+		<table tableName="%">
+			<generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+		</table>
+	</context>
+</generatorConfiguration>

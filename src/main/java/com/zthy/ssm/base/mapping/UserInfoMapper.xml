@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zthy.ssm.base.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zthy.ssm.base.model.UserInfo" >
+    <!--
+      WARNING - @mbggenerated
+    -->
+    <id column="UserInfoId" property="userinfoid" jdbcType="INTEGER" />
+    <result column="GroupId" property="groupid" jdbcType="INTEGER" />
+    <result column="LoginName" property="loginname" jdbcType="VARCHAR" />
+    <result column="LoginPwd" property="loginpwd" jdbcType="VARCHAR" />
+    <result column="UserName" property="username" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
+    <result column="Qq" property="qq" jdbcType="VARCHAR" />
+    <result column="Strtus" property="strtus" jdbcType="INTEGER" />
+  </resultMap>
+</mapper>

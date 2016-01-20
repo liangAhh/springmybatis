@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="   
+                http://www.springframework.org/schema/beans   
+                http://www.springframework.org/schema/beans/spring-beans.xsd   
+                http://www.springframework.org/schema/context   
+                http://www.springframework.org/schema/context/spring-context-4.2.xsd   
+                http://www.springframework.org/schema/mvc   
+                http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+
+	<context:annotation-config />
+	<!-- 扫描@Controller 控制器 -->
+	<context:component-scan base-package="com.zthy.ssm.web.controller" />
+	<!-- 分发请求控制器 -->
+	<mvc:annotation-driven/>
+
+	<!-- 静态资源访问 -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 上传文件分解器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"/>
+		<!-- 上传最大容量 -->
+		<!-- <property name="maxUploadSize" value="100000"/> -->
+	</bean>
+    
+    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean>  
+    
+    <!-- 国际化支持 -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+    	<property name="defaultEncoding" value="UTF-8"/>
+    	<property name="basenames">
+    		<list>
+    			<value>messages.message</value>
+    		</list>
+    	</property>
+    </bean>
+    <!-- 基于Cookie的本地化解析器 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    	<property name="cookieMaxAge" value="604800"/>
+		<property name="defaultLocale" value="zh_CN"/>
+		<property name="cookieName" value="Language"/>
+    </bean>
+    <!-- 基于Session的本地化解析器 -->
+	<!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />-->
+    
+    
+    <!-- 全局异常配置 -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">errors/500</prop>
+				<prop key="java.lang.Throwable">errors/404</prop>
+			</props>
+		</property>
+		<property name="statusCodes">
+			<props>
+				<prop key="errors/500">500</prop>
+				<prop key="errors/404">404</prop>
+			</props>
+		</property>
+		<!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+		<property name="warnLogCategory" value="WARN"></property>
+		<!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 -->
+		<property name="defaultErrorView" value="errors/error"></property>
+		<!-- 默认HTTP状态码 -->
+		<property name="defaultStatusCode" value="500"></property>
+	</bean>
+</beans>
